@@ -35,10 +35,38 @@ namespace CheeseMVC.Controllers
         [Route("/Cheese/Add")]
         public IActionResult NewCheese(string name, string description)
         {
-            
-            Cheeses.Add(name, description);
+            int error = 0;
 
-            return Redirect("/Cheese");
+            if (name == null)
+            {
+                string errorMessage = "Cheese name is required.";
+                ViewBag.error = errorMessage;
+                return View("Add");
+            }
+            foreach (char letter in name)
+            {
+                if (!(char.IsLetter(letter) || char.IsWhiteSpace(letter)))
+                {
+                    error += 1;
+                }
+            }
+
+            if (error == 0)
+            {
+                Cheeses.Add(name, description);
+                return Redirect("/Cheese");
+            }
+            else
+            {
+                string errorMessage = "Cheese name must only contain " +
+                    "letters and spaces.";
+                ViewBag.error = errorMessage;
+                return View("Add");
+
+            }
+            
+
+            
         }
 
         [HttpPost]
