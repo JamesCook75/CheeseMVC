@@ -1,20 +1,30 @@
 ﻿@{
+
 }
 
 <h1>Remove Cheeses</h1>
 
-<form method="post">
+        <form method="post">
+
+            @*  Dropdown menu
+                <select name="name">
+                    @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+                    {
+                        <option value="@cheese.Key">@cheese.Key</option>
+                    }
+                </select>*@
 
 
-    @*<input value="@cheese.Key" type="checkbox" /><p>@cheese.Key</p>*@
-    <select name="name">
-        @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
-        {
-            <option value="@cheese.Key">@cheese.Key</option>
-        }
-    </select>
-
-    <input type="submit" value="Remove Cheese" />
+            @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+            {
+                <div>
+                    <input name="names" value="@cheese.Key" type="checkbox" /><span>  @cheese.Key</span>
+                </div>
 
 
-</form>
+            }
+
+            <input type="submit" value="Remove Cheese" />
+
+
+        </form>
