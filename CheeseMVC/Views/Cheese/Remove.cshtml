@@ -15,10 +15,10 @@
                 </select>*@
 
 
-            @foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+            @foreach (Cheese cheese in ViewBag.cheeses)
             {
                 <div>
-                    <input name="names" value="@cheese.Key" type="checkbox" /><span>  @cheese.Key</span>
+                    <input name="names" value="@cheese.Name" type="checkbox" /><span>  @cheese.Name</span>
                 </div>
 
 
